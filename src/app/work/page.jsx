@@ -10,6 +10,9 @@ import {
 } from "@/app/components/ui/tooltip";
 import Link from "next/link";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import WorkSliderBtns from "@/app/components/WorkSliderBtns";
 
 const projects = [
   {
@@ -22,7 +25,21 @@ const projects = [
       { name: "MongoDB" },
       { name: "Express.js" },
     ],
-    Image: "/assets/work/statistic.png",
+    Image: "/assets/work/taskmanager1.png",
+    live: "",
+    github: "https://github.com/AdemMami123/TaskManagerApp",
+  },
+  {
+    num: "02",
+    title: "Budget Tracker Application",
+    description: "A simple budget tracker app to manage your daily expenses.",
+    stack: [
+      { name: "React" },
+      { name: "Node.js" },
+      { name: "MongoDB" },
+      { name: "Express.js" },
+    ],
+    Image: "/assets/work/budget.jpg",
     live: "",
     github: "",
   },
@@ -30,10 +47,17 @@ const projects = [
 
 const Work = () => {
   const [project, setProject] = useState(projects[0]);
+  const handleSlideChange = (swiper) => {
+    const currentIndex = swiper.activeIndex;
+    setProject(projects[currentIndex]);
+  };
   return (
     <motion.section
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      animate={{
+        opacity: 1,
+        transition: { delay: 2.4, duration: 0.4, ease: "easeIn" },
+      }}
       className="min-h-[80vh] flex flex-col justify-center py-12 xl:px-0"
     >
       <div className="container mx-auto">
@@ -89,8 +113,39 @@ const Work = () => {
               </div>
             </div>
           </div>
-          <div className="w-full xl:w-1/2">
-           <div>Slide</div>
+          <div className="w-full xl:w-[50%]">
+            <Swiper
+              spaceBetween={30}
+              slidesPerView={1}
+              className="xl:h-[520px] mb-12"
+              onSlideChange={handleSlideChange}
+            >
+              {projects.map((project, index) => {
+                return (
+                  <SwiperSlide key={index} className="w-full">
+                    <div className="h-[460px] relative group flex justify-center items-center bg-pink-50/20">
+                      {/* Overlay */}
+                      <div className="absolute top-0 buttom-0 w-full h-full bg-black/10 z-10"></div>
+                      {/* Image */}
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={project.Image}
+                          fill
+                          className="object-cover"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+
+              {/* Slider button */}
+              <WorkSliderBtns
+                containerStyles="flex gap-2 absolute right-0 bottom-[calc(50%_-_22px)] xl:bottom-0 z-20 w-full justify-between xl:w-max xl:justify-none"
+                btnStyles="bg-accent hover:bg-accent-hover text-primary text-[22px] w-[44px] h-[44px] flex justify-center items-center transition-all"
+              />
+            </Swiper>
           </div>
         </div>
       </div>
