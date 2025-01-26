@@ -1,4 +1,3 @@
-import { Section } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { FiDownload } from "react-icons/fi";
 import Social from "@/app/components/ui/Social";

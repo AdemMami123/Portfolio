@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Weight } from "lucide-react";
+
 import Header  from "./components/header";
 import PageTransition from "./components/PageTransitions";
 import StairTransition from "./components/StairTransition";
