@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/components/ui/typewriter-effect.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/components/ui/typewriter-effect.jsx", "src/app/components/ui/tooltip.jsx", "src/app/components/ui/scroll-area.jsx", "src/app/components/ui/tabs.jsx"],
   "exclude": ["node_modules"]
 }
