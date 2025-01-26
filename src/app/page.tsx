@@ -17,12 +17,12 @@ const Home = () => {
           <div className="text-center xl:text-left order-2 xl:order-none">
             <span>Software Developer</span>
             <h1 className="h1 mb-6 ">
-              Hello I&apos;m <br />
+              Hello I am <br />
               <span className="text-accent">Adem Mami</span>
             </h1>
             <p className="max-w[500px] mb-9 text-white/80 italic">
               I am a software engineering student passionate about learning and
-              creating in the world of technology. Currently, I&apos;m focused on
+              creating in the world of technology. Currently, I am focused on
               mastering web development, crafting responsive, user-friendly
               websites, and exploring modern tools.
             </p>
