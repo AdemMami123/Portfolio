@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { BsArrowUpRight, BsGithub } from "react-icons/bs";
 import {
   Tooltip,
@@ -13,6 +13,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import WorkSliderBtns from "@/app/components/WorkSliderBtns";
+import { MdClose } from "react-icons/md"; // Import Close icon for the modal
 
 const projects = [
   {
@@ -28,6 +29,18 @@ const projects = [
     Image: "/assets/work/taskmanager1.png",
     live: "",
     github: "https://github.com/AdemMami123/TaskManagerApp",
+    screenshots: [
+      "/assets/work/login.png",
+      "/assets/work/registere.png",
+      "/assets/work/statistic.png",
+      "/assets/work/taskmanager.png",
+      "/assets/work/create.png",
+      "/assets/work/archieve.png",
+      "/assets/work/agenda.png",
+      "/assets/work/habit.png",
+      "/assets/work/notification.png",
+      "/assets/work/edituser.png",
+    ],
   },
   {
     num: "02",
@@ -42,21 +55,50 @@ const projects = [
     Image: "/assets/work/budget.jpg",
     live: "",
     github: "",
+    screenshots: [
+      "/assets/screenshots/budget1.png",
+      "/assets/screenshots/budget2.png",
+    ],
   },
 ];
 
 const Work = () => {
   const [project, setProject] = useState(projects[0]);
+  const [showScreenshots, setShowScreenshots] = useState(false); // State for modal visibility
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0); // Track the selected image in the slider
+  const swiperRef = useRef(null); // Ref for Swiper instance
+
   const handleSlideChange = (swiper) => {
     const currentIndex = swiper.activeIndex;
     setProject(projects[currentIndex]);
   };
+
+  const handleShowScreenshots = () => {
+    setShowScreenshots((prev) => !prev); // Toggle modal visibility
+  };
+
+  const handleCloseModal = () => {
+    setShowScreenshots(false); // Close modal
+  };
+
+  const handleNextImage = () => {
+    if (swiperRef.current) {
+      swiperRef.current.swiper.slideNext(); // Slide to next image
+    }
+  };
+
+  const handlePrevImage = () => {
+    if (swiperRef.current) {
+      swiperRef.current.swiper.slidePrev(); // Slide to previous image
+    }
+  };
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
-        transition: { delay: 2.4, duration: 0.4, ease: "easeIn" },
+        transition: { delay: 1, duration: 0.4, ease: "easeIn" },
       }}
       className="min-h-[80vh] flex flex-col justify-center py-12 xl:px-0"
     >
@@ -110,9 +152,17 @@ const Work = () => {
                     </Tooltip>
                   </TooltipProvider>
                 </Link>
+                {/* Button to open the screenshots modal */}
+                <button
+                  onClick={handleShowScreenshots}
+                  className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group"
+                >
+                  <span className="text-white text-3xl group-hover:text-accent">📸</span>
+                </button>
               </div>
             </div>
           </div>
+
           <div className="w-full xl:w-[50%]">
             <Swiper
               spaceBetween={30}
@@ -149,6 +199,63 @@ const Work = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal for Screenshots */}
+      {showScreenshots && (
+        <div className="fixed top-0 left-0 right-0 bottom-0 bg-black/60 flex justify-center items-center z-50">
+          <div className="relative bg-white p-8 rounded-lg max-w-6xl w-full shadow-lg">
+            {/* Close button */}
+            <button
+              onClick={handleCloseModal}
+              className="absolute top-2 right-2 text-3xl text-gray-600 hover:text-gray-800 transition duration-300"
+            >
+              <MdClose />
+            </button>
+
+            <div className="relative flex justify-center items-center">
+              {/* Left navigation button */}
+              <button
+                onClick={handlePrevImage}
+                className="p-4 text-white bg-black/60 rounded-full absolute left-2 z-10 hover:bg-black/80 transition duration-200"
+              >
+                {"<"}
+              </button>
+
+              {/* Image Swiper */}
+              <Swiper
+                spaceBetween={10}
+                slidesPerView={1}
+                initialSlide={selectedImageIndex}
+                className="w-full max-w-5xl"
+                onSlideChange={(swiper) => setSelectedImageIndex(swiper.activeIndex)}
+                ref={swiperRef} // Attach the swiperRef here
+              >
+                {project.screenshots.map((src, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="relative w-full h-[600px] rounded-lg overflow-hidden">
+                      <Image
+                        src={src}
+                        alt={`Screenshot ${index + 1}`}
+                        layout="fill"
+                        objectFit="contain"
+                        className="rounded-lg"
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
+              {/* Right navigation button */}
+              <button
+                onClick={handleNextImage}
+                className="p-4 text-white bg-black/60 rounded-full absolute right-2 z-10 hover:bg-black/80 transition duration-200"
+              >
+                {">"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </motion.section>
   );
 };

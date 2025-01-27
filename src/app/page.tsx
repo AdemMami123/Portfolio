@@ -7,8 +7,6 @@ import Skills from "@/app/components/ui/Skills";
 //infinity moving cards
 //import InfiniteMovingCards from "@/app/components/ui/InfiniteMovingCards";
 const Home = () => {
-  
-
   return (
     <section className="h-full">
       <div className="container mx-auto h-full order-2 xl:order-none">
@@ -28,15 +26,20 @@ const Home = () => {
             </p>
             {/* Button and socials */}
             <div className="flex flex-col xl:flex-row items-center gap-8">
-              <Button
-                variant="outline"
-                size="lg"
-                className="uppercase flex items-center gap-2"
+              <a
+                href="/assets/cv/AdemMami Resume.pdf"
+                download="AdemMami_Resume.pdf"
               >
-                <span>Download CV</span>
-                <FiDownload className="text-xl" />
-              </Button>
-              
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="uppercase flex items-center gap-2"
+                >
+                  <span>Download CV</span>
+                  <FiDownload className="text-xl" />
+                </Button>
+              </a>
+
               <div className="mb-8 xl:mb-0">
                 <Social
                   containerStyles="flex gap-6"
@@ -52,9 +55,6 @@ const Home = () => {
           <div className="order-1 xl:order-none mb-8 xl:mb-0">
             <Photo />
           </div>
-        
-
-          
         </div>
       </div>
     </section>
