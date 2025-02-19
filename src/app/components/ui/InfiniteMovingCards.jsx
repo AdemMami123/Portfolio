@@ -10,16 +10,16 @@ const InfiniteMovingCards = ({
   pauseOnHover = true,
 }) => {
   const duration = {
-    slow: 40, 
-    normal: 30, 
-    fast: 20, 
+    slow: 30, 
+    normal: 20, 
+    fast: 10, 
   }[speed];
 
   return (
     <div className="relative overflow-hidden">
       {/* First Row */}
       <motion.div
-        className="flex gap-3" // Reduced gap for tighter spacing
+        className="flex gap-3" 
         animate={{
           x: direction === "left" ? ["0%", "-100%"] : ["-100%", "0%"], // First row moves left or right
         }}
