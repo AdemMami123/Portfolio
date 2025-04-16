@@ -18,6 +18,28 @@ import { MdClose } from "react-icons/md"; // Import Close icon for the modal
 const projects = [
   {
     num: "01",
+    title: "Quiz Area",
+    description: "An interactive quiz game to test your knowledge in a fun way.",
+    stack: [
+      { name: " Next.js" },
+      { name: " Framer Motion" },
+      { name: "Tailwind CSS" },
+      
+    ],
+    Image: "/assets/quizgame/quiz_area.png",
+    live: "https://quizarea-ademmami123s-projects.vercel.app/",
+    github: "https://github.com/AdemMami123/QuizArena",
+    screenshots: [
+      "/assets/quizgame/home.png",
+      "/assets/quizgame/question.png",
+      "/assets/quizgame/create_quiz.png",
+      "/assets/quizgame/join_quiz.png",
+      "/assets/quizgame/share_quiz.png",
+      
+    ],
+  },
+  {
+    num: "02",
     title: "Task Manager Application",
     description: "A simple task manager app to manage your daily tasks.",
     stack: [
@@ -43,7 +65,7 @@ const projects = [
     ],
   },
   {
-    num: "02",
+    num: "03",
     title: "Budget Tracker Application",
     description: "A simple budget tracker app to manage your daily expenses.",
     stack: [

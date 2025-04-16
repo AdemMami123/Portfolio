@@ -20,6 +20,21 @@ const services = [
       "Helping you migrate to the cloud with a well-defined strategy.",
     href: "",
   },
+  {
+    num: "03",
+    title: "AI & Machine Learning",
+    description:
+      "Empowering your business with intelligent systems through cutting-edge machine learning and deep learning solutions.",
+    href: "",
+  },{
+    num: "04",
+    title: "Mobile Development",
+    description:
+      "Building high-performance Android apps tailored to your users' needs, using the latest technologies and best practices.",
+    href: "",
+  }
+  
+  
 ];
 const Services = () => {
   return (
