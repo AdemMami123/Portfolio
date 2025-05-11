@@ -13,10 +13,10 @@ const info = [
     title: "Email",
     content: (
       <a
-        href="mailto:adem.mami@itbs.tn"
+        href="mailto:ademmami92@gmail.com"
         className="text-accent underline hover:text-white transition duration-200"
       >
-        adem.mami@itbs.tn
+        ademmami92@gmail.com
       </a>
     ),
   },
